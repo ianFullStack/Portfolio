@@ -1,0 +1,30 @@
+<?php
+ 
+// Create a new Laravel application instance
+$app = new Illuminate\Foundation\Application();
+ 
+// Bind the HTTP kernel instance
+$app->singleton(
+    Illuminate\Contracts\Http\Kernel::class,
+    App\Http\Kernel::class
+);
+ 
+// Bind the Console kernel instance
+$app->singleton(
+    Illuminate\Contracts\Console\Kernel::class,
+    App\Console\Kernel::class
+);
+ 
+// Bind the Exception handler instance
+$app->singleton(
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    App\Exceptions\Handler::class
+);
+ 
+// Set the public path
+$app->bind('path.public', function () {
+    return base_path() . '/public';
+});
+ 
+// Run the application
+$app->run();
